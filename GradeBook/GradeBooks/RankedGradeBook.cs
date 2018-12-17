@@ -18,14 +18,14 @@ namespace GradeBook.GradeBooks
             if (Students.Count < 5)
                 throw new InvalidOperationException("Ranked-grading requires a minimum of 5 students to work.");
             var threshold = (int)Math.Ceiling(Students.Count * 0.2);
-            var orderedstudent = Students.OrderByDescending(e => e.AverageGrade).Select(e => e.AverageGrade).ToList();
-            if (averageGrade >= orderedstudent[threshold - 1])
+            var grades = Students.OrderByDescending(e => e.AverageGrade).Select(e => e.AverageGrade).ToList();
+            if (averageGrade >= grades[threshold - 1])
                 result = 'A';
-            else if (averageGrade >= orderedstudent[threshold * 2 - 1])
+            else if (averageGrade >= grades[threshold * 2 - 1])
                 result = 'B';
-            else if (averageGrade >= orderedstudent[threshold * 4 - 1])
+            else if (averageGrade >= grades[threshold * 3 - 1])
                 result = 'C';
-            else if (averageGrade >= orderedstudent[threshold * 6 - 1])
+            else if (averageGrade >= grades[threshold * 4 - 1])
                 result = 'D';
             return result;
         }
